@@ -1,45 +1,60 @@
 import 'package:flutter/material.dart';
 import 'product_widget.dart';
 
-class CatalogPage extends StatelessWidget {
+class CatalogPage extends StatefulWidget {
   final List<Map<String, dynamic>> data;
 
-  CatalogPage({required this.data});
+  const CatalogPage({super.key, required this.data});
+
+  @override
+  _CatalogPageState createState() => _CatalogPageState();
+}
+
+class _CatalogPageState extends State<CatalogPage> {
+  void _addToCart(int index) {
+    setState(() {
+      widget.data[index]['isInCart'] = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Каталог')),
-      body: ListView.builder(
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.all(8.0), // Отступы вокруг контейнера
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 2), // Цвет и ширина границы
-              borderRadius: BorderRadius.circular(8.0), // Закругление углов
-              color: Colors.white, // Цвет фона
-            ),
-            child: ListTile(
-              title: Text(data[index]['title']),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start, // Выравнивание по левому краю
-                children: [
-                  Text('${data[index]['days']} день'),
-                  Text('${data[index]['price']}₽'),
-                ],
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductPage(product: data[index]),
+      appBar: AppBar(
+        title: const Text(
+          'Каталог',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white, 
+        iconTheme: const IconThemeData(color: Colors.black), 
+      ),
+      body: Container(
+        color: Colors.white, 
+        child: ListView.builder(
+          itemCount: widget.data.length,
+          itemBuilder: (context, index) {
+            return ProductWidget(
+              title: widget.data[index]['title'],
+              days: widget.data[index]['days'],
+              price: widget.data[index]['price'].toDouble(),
+              button: ElevatedButton(
+                onPressed: () {
+                  _addToCart(index); 
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue, 
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                );
-              },
-            ),
-          );
-        },
+                ),
+                child: const Text(
+                  'Добавить',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

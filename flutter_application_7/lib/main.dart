@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'catalog_page.dart';
 import 'cart_page.dart';
 import 'profile_page.dart';
-import 'product_widget.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
     );
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -28,22 +31,27 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late final List<Widget> _pages;
 
-  // Массив данных
   final List<Map<String, dynamic>> _data = [
     {
       'title': 'ПЦР-тест на определение РНК коронавируса стандартный',
       'days': 2,
       'price': 1800,
+      'isInCart': false,
+      'quantity': 1,
     },
     {
       'title': 'Клинический анализ крови с лейкоцитарной формулировкой',
       'days': 2,
       'price': 690,
+      'isInCart': false, 
+      'quantity': 1,
     },
     {
       'title': 'Биохимический анализ крови, базовый',
       'days': 1,
       'price': 2440,
+      'isInCart': false, 
+      'quantity': 1,
     },
   ];
 
@@ -52,8 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _pages = [
       CatalogPage(data: _data),
-      CartPage(),
-      ProfilePage(),
+      CartPage(data: _data), 
+      const ProfilePage(),
     ];
   }
 
@@ -66,21 +74,27 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: _pages[_selectedIndex], // Отображение выбранной страницы
+      appBar: AppBar(
+        backgroundColor: Colors.white, 
+      ),
+      body: Container(
+        color: Colors.white, 
+        child: _pages[_selectedIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            label: 'Catalog',
+            label: 'Главная',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
+            label: 'Корзина',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'Профиль',
           ),
         ],
         currentIndex: _selectedIndex,
