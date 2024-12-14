@@ -1,16 +1,7 @@
-# flutter_application_7
+Практика 7
+Маркин Егор
+ЭФБО-02-22
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot_20241214_190212](https://github.com/user-attachments/assets/cc844971-690c-460b-8b90-cd2342402916)
+![Screenshot_20241214_190201](https://github.com/user-attachments/assets/0f6f4f02-3f8c-4d52-978d-594e483154b9)
+![Screenshot_20241214_190150](https://github.com/user-attachments/assets/18c380e6-b992-4477-bcbe-0f1982343759)
